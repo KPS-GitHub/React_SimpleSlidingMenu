@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MenuButton from "./MenuButton";
 
 class MenuContainer extends Component {
   constructor(props) {
@@ -8,7 +9,15 @@ class MenuContainer extends Component {
       visible: false
     };
 
+    this.handleMouseDown = this.handleMouseDown.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  handleMouseDown(e) {
+    this.toggleMenu();
+
+    console.log("clicked");
+    e.stopPropagation();
   }
 
   toggleMenu() {
@@ -20,6 +29,7 @@ class MenuContainer extends Component {
   render() {
     return (
       <div>
+        <MenuButton handleMouseDown={this.handleMouseDown} />
         <div>
           <p>Can you spot the item that doesn't belong?</p>
           <ul>
